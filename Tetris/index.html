@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris - Modern UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="left-panel glass-panel">
+            <h1>TETRIS</h1>
+            <div class="score-container">
+                <p>SCORE</p>
+                <div id="score">0</div>
+            </div>
+            <div class="level-container">
+                <p>LEVEL</p>
+                <div id="level">1</div>
+            </div>
+            <div class="lines-container">
+                <p>LINES</p>
+                <div id="lines">0</div>
+            </div>
+            <button id="start-btn" class="glass-btn">START</button>
+            <div class="controls">
+                <p>← → : Move</p>
+                <p>↑ : Rotate</p>
+                <p>↓ : Soft Drop</p>
+                <p>Space : Hard Drop</p>
+            </div>
+        </div>
+        
+        <div class="canvas-container glass-panel">
+            <canvas id="tetris-board" width="300" height="600"></canvas>
+            <div id="game-over-screen" class="hidden">
+                <h2>GAME OVER</h2>
+                <button id="restart-btn" class="glass-btn">RESTART</button>
+            </div>
+        </div>
+        
+        <div class="right-panel glass-panel">
+            <div class="next-piece-container">
+                <p>NEXT</p>
+                <canvas id="next-piece" width="120" height="120"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
