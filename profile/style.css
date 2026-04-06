@@ -1,0 +1,252 @@
+/* 전역 변수 설정: 진한 다크모드와 에메랄드 그린 포인트 */
+:root {
+    --bg-dark: #0f172a;
+    --highlight: #10b981; /* Emerald Green */
+    --highlight-glow: rgba(16, 185, 129, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', 'Pretendard', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.7;
+}
+
+/* Background animated glows */
+.background-glow {
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--highlight-glow) 0%, transparent 60%);
+    z-index: -1;
+    filter: blur(80px);
+    animation: float 10s infinite ease-in-out alternate;
+}
+
+.background-glow.pos-2 {
+    top: auto;
+    bottom: -20%;
+    left: auto;
+    right: -10%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 60%);
+    animation: float 15s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(50px) scale(1.1); }
+}
+
+/* Glassmorphism Navigation */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-main);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--highlight);
+}
+
+/* 밑줄 애니메이션 */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: var(--highlight);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 20px 80px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 3.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px -12px var(--highlight-glow);
+    border-color: rgba(16, 185, 129, 0.25);
+}
+
+.glass-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.highlight {
+    color: var(--highlight);
+    text-shadow: 0 0 20px var(--highlight-glow);
+}
+
+/* Hero Section */
+.greeting {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+.name {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+}
+
+.title {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    border-right: 3px solid var(--highlight);
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.description {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Skills/Interests tags */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.skill-tag {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 0.8rem 1.7rem;
+    border-radius: 50px;
+    font-weight: 500;
+    color: var(--highlight);
+    cursor: default;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 1.1rem;
+}
+
+.skill-tag:hover {
+    background: rgba(16, 185, 129, 0.25);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 20px -5px var(--highlight-glow);
+    color: #fff;
+}
+
+/* Contact Button */
+.contact-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: var(--highlight);
+    border: 2px solid var(--highlight);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px -10px var(--highlight-glow);
+    background: var(--highlight);
+    color: var(--bg-dark); /* 초록색 배경에 어두운 글씨로 반전 */
+}
+
+/* Scroll Animation Initial State */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.25, 0.8, 0.25, 1), transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 모바일 반응형 처리 */
+@media (max-width: 768px) {
+    .name { font-size: 3rem; }
+    .title { font-size: 1.4rem; }
+    .glass-card { padding: 2rem; }
+    .nav-links { gap: 1rem; font-size: 0.9rem; }
+}
