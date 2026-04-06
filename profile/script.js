@@ -45,3 +45,74 @@ document.querySelectorAll('.animate-on-scroll').forEach((section, index) => {
     section.style.transitionDelay = `${index * 0.1}s`;
     observer.observe(section);
 });
+
+// === 로그인(Login) 기능 모의 연동 플로우 ===
+const loginBtn = document.getElementById('login-btn');
+const loginModal = document.getElementById('login-modal');
+const closeBtn = document.querySelector('.close-btn');
+const submitLoginBtn = document.getElementById('submit-login');
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const errorMsg = document.getElementById('error-msg');
+const secretContent = document.getElementById('secret-content');
+const greetingName = document.querySelector('.name');
+
+function openModal() {
+    loginModal.classList.remove('hidden');
+    usernameInput.focus();
+}
+
+function closeModal() {
+    loginModal.classList.add('hidden');
+    usernameInput.value = '';
+    passwordInput.value = '';
+    errorMsg.classList.add('hidden');
+}
+
+loginBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+
+// 외부 클릭 시 닫기
+loginModal.addEventListener('click', (e) => {
+    if(e.target === loginModal) closeModal();
+});
+
+// 로그인 시도 함수
+function handleLogin() {
+    const id = usernameInput.value.trim();
+    const pw = passwordInput.value.trim();
+
+    // ID, PW 검증
+    if (id === 'admin' && pw === '1234') {
+        closeModal();
+        
+        // 로그인 상태 UI 변환
+        loginBtn.style.display = 'none';
+        greetingName.innerHTML = `<span class="highlight">최원석 (Admin)</span>입니다.`;
+        
+        // 숨겨진 비밀 공간 나타나기
+        secretContent.style.display = 'block';
+        secretContent.style.transitionDelay = '0s'; // 기존 딜레이 제거
+        
+        // 브라우저 렌더링 후 부드러운 등장(fade-in) 적용 및 자동 스크롤
+        setTimeout(() => {
+            secretContent.classList.add('visible');
+            setTimeout(() => {
+                secretContent.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }, 100);
+        
+    } else {
+        // 실패 시 에러 표시 및 흔들림(shake) 타격 효과
+        errorMsg.classList.remove('hidden');
+        const modalBox = document.querySelector('.modal-content');
+        modalBox.classList.remove('shake');
+        void modalBox.offsetWidth; // 브라우저 리플로우 강제 적용
+        modalBox.classList.add('shake');
+    }
+}
+
+submitLoginBtn.addEventListener('click', handleLogin);
+passwordInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleLogin();
+});

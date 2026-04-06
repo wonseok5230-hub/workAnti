@@ -21,6 +21,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#interests">Interests</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><button id="login-btn" class="nav-login-btn">Login</button></li>
         </ul>
     </nav>
 
@@ -53,6 +54,15 @@
             </div>
         </section>
 
+        <!-- Secret Section (Hidden) -->
+        <section id="secret-content" class="glass-card animate-on-scroll" style="display: none; margin-bottom: 3rem;">
+            <h2><span class="highlight">#</span> Secret Portfolio (Admin)</h2>
+            <p style="margin-top:1rem;">관리자 로그인에 성공하셨습니다! <br>최원석 님을 위한 시크릿 데이터 공간입니다.</p>
+            <div class="skills-grid" style="margin-top: 1.5rem;">
+                <div class="skill-tag" style="background: rgba(239, 68, 68, 0.2); color: #ef4444; border-color: #ef4444;">🔒 최상급 정보 열람 모드 활성화 됨</div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact" class="glass-card animate-on-scroll">
             <h2><span class="highlight">#</span> Contact</h2>
@@ -60,6 +70,22 @@
             <a href="mailto:example@email.com" class="contact-btn">이메일로 안부 전하기</a>
         </section>
     </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-card">
+            <span class="close-btn">&times;</span>
+            <h2 style="margin-bottom: 1.5rem;">Admin <span class="highlight">Login</span></h2>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="아이디" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="비밀번호">
+            </div>
+            <p id="error-msg" class="error-msg hidden">아이디 또는 비밀번호가 틀렸습니다.</p>
+            <button id="submit-login" class="contact-btn" style="width: 100%; text-align: center; margin-top: 0;">접속</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
